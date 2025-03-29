@@ -6,26 +6,44 @@
     <title>Pixel Panda Store</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Arial', sans-serif; background-color: #1a1a1a; color: #fff; }
+        body { font-family: 'Poppins', sans-serif; background-color: #121212; color: #fff; }
         .container { width: 100%; position: relative; }
         .header {
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-end;
             align-items: center;
             padding: 15px 30px;
-            background: #333;
+            background: #222;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
         }
-        .header a {
+        .menu { display: flex; align-items: center; }
+        .menu a {
             text-decoration: none;
             color: #fff;
             font-size: 18px;
             margin: 0 15px;
             transition: color 0.3s;
         }
-        .header a:hover { color: #f39c12; }
-        .menu { display: flex; }
+        .menu a:hover { color: #f39c12; }
+        .icon {
+            width: 24px;
+            height: 24px;
+            filter: invert(1);
+            cursor: pointer;
+        }
+        .cart-badge {
+            background: orange;
+            color: white;
+            font-size: 14px;
+            border-radius: 50%;
+            padding: 5px 10px;
+            position: absolute;
+            top: 10px;
+            right: 30px;
+            display: none;
+        }
         .image-container { position: relative; display: block; width: 100%; margin-bottom: 20px; }
-        img { width: 100%; height: auto; display: block; border-radius: 8px; }
+        img { width: 100%; height: auto; display: block; border-radius: 12px; }
         .button-container {
             position: absolute;
             bottom: 20px;
@@ -36,10 +54,9 @@
         .pay-button {
             background-color: #28a745;
             color: white;
-            padding: 16px 32px;
-            text-decoration: none;
-            font-size: 24px;
-            border-radius: 30px;
+            padding: 18px 36px;
+            font-size: 26px;
+            border-radius: 40px;
             display: inline-block;
             transition: background-color 0.3s ease, transform 0.2s;
         }
@@ -50,16 +67,16 @@
         .footer {
             text-align: center;
             padding: 20px;
-            background: #333;
+            background: #222;
             margin-top: 20px;
         }
     </style>
     <script>
-        function login() {
-            let email = prompt("Enter your email:");
-            if (email) {
-                alert("Logged in as " + email);
-            }
+        let cartCount = 0;
+        function addToCart() {
+            cartCount++;
+            document.getElementById("cart-badge").style.display = "block";
+            document.getElementById("cart-badge").innerText = cartCount;
         }
     </script>
 </head>
@@ -68,45 +85,48 @@
         <div class="menu">
             <a href="index.html">Home</a>
             <a href="about.html">About</a>
-            <a href="#" onclick="login()">📧 Login</a>
-            <a href="cart.html">🛒 Cart</a>
+            <img src="login-icon.png" class="icon" onclick="document.getElementById('login-form').style.display='block'">
+            <div style="position: relative;">
+                <img src="cart-icon.png" class="icon" onclick="location.href='cart.html'">
+                <span id="cart-badge" class="cart-badge">0</span>
+            </div>
         </div>
     </div>
     <div class="container">
         <div class="image-container">
             <img src="image1.jpg" alt="Image 1">
             <div class="button-container">
-                <a href="https://razorpay.me/@pixelpanda6460" class="pay-button" target="_blank">Buy Now</a>
+                <a href="#" class="pay-button" onclick="addToCart()">Buy Now</a>
             </div>
         </div>
         <div class="image-container">
             <img src="image2.jpg" alt="Image 2">
             <div class="button-container">
-                <a href="https://razorpay.me/@pixelpanda6460" class="pay-button" target="_blank">Buy Now</a>
+                <a href="#" class="pay-button" onclick="addToCart()">Buy Now</a>
             </div>
         </div>
         <div class="image-container">
             <img src="image3.jpg" alt="Image 3">
             <div class="button-container">
-                <a href="https://razorpay.me/@pixelpanda6460" class="pay-button" target="_blank">Buy Now</a>
+                <a href="#" class="pay-button" onclick="addToCart()">Buy Now</a>
             </div>
         </div>
         <div class="image-container">
             <img src="image4.jpg" alt="Image 4">
             <div class="button-container">
-                <a href="https://razorpay.me/@pixelpanda6460" class="pay-button" target="_blank">Buy Now</a>
+                <a href="#" class="pay-button" onclick="addToCart()">Buy Now</a>
             </div>
         </div>
         <div class="image-container">
             <img src="image5.jpg" alt="Image 5">
             <div class="button-container">
-                <a href="https://razorpay.me/@pixelpanda6460" class="pay-button" target="_blank">Buy Now</a>
+                <a href="#" class="pay-button" onclick="addToCart()">Buy Now</a>
             </div>
         </div>
         <div class="image-container">
             <img src="image6.jpg" alt="Image 6">
             <div class="button-container">
-                <a href="https://razorpay.me/@pixelpanda6460" class="pay-button" target="_blank">Buy Now</a>
+                <a href="#" class="pay-button" onclick="addToCart()">Buy Now</a>
             </div>
         </div>
     </div>
