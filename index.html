@@ -51,11 +51,27 @@
         .icon-container {
             position: relative;
         }
-        .content {
+        .image-container { position: relative; display: block; width: 100%; }
+        img { width: 100%; height: auto; display: block; }
+        .button-container {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
             text-align: center;
-            padding: 50px 20px;
-            max-width: 800px;
-            margin: 0 auto;
+        }
+        .pay-button {
+            background-color: #28a745;
+            color: white;
+            padding: 20px 40px;
+            font-size: 28px;
+            border-radius: 50px;
+            display: inline-block;
+            transition: background-color 0.3s ease, transform 0.2s;
+        }
+        .pay-button:hover {
+            background-color: #218838;
+            transform: scale(1.05);
         }
         .footer {
             text-align: center;
@@ -83,8 +99,43 @@
         </div>
     </div>
 
-  
-
+    <div class="image-container">
+        <img src="image1.jpg" alt="Image 1">
+        <div class="button-container">
+            <a href="shop.html" class="pay-button">Shop Now</a>
+        </div>
+    </div>
+    <div class="image-container">
+        <img src="image2.jpg" alt="Image 2">
+        <div class="button-container">
+            <a href="shop.html" class="pay-button">Shop Now</a>
+        </div>
+    </div>
+    <div class="image-container">
+        <img src="image3.jpg" alt="Image 3">
+        <div class="button-container">
+            <a href="shop.html" class="pay-button">Shop Now</a>
+        </div>
+    </div>
+    <div class="image-container">
+        <img src="image4.jpg" alt="Image 4">
+        <div class="button-container">
+            <a href="shop.html" class="pay-button">Shop Now</a>
+        </div>
+    </div>
+    <div class="image-container">
+        <img src="image5.jpg" alt="Image 5">
+        <div class="button-container">
+            <a href="shop.html" class="pay-button">Shop Now</a>
+        </div>
+    </div>
+    <div class="image-container">
+        <img src="image6.jpg" alt="Image 6">
+        <div class="button-container">
+            <a href="shop.html" class="pay-button">Shop Now</a>
+        </div>
+    </div>
+    
     <div class="footer">
         <p>&copy; 2025 Pixel Panda. All rights reserved.</p>
     </div>
