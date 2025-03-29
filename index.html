@@ -68,6 +68,7 @@
             border-radius: 50px;
             display: inline-block;
             transition: background-color 0.3s ease, transform 0.2s;
+            cursor: pointer;
         }
         .pay-button:hover {
             background-color: #218838;
@@ -81,6 +82,39 @@
             margin-top: 20px;
         }
     </style>
+    <script>
+        let cart = [];
+
+        function addToCart(productName) {
+            let existingItem = cart.find(item => item.name === productName);
+            if (existingItem) {
+                existingItem.quantity++;
+            } else {
+                cart.push({ name: productName, quantity: 1 });
+            }
+            updateCartBadge();
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+
+        function updateCartBadge() {
+            let totalCount = cart.reduce((acc, item) => acc + item.quantity, 0);
+            let badge = document.getElementById("cart-badge");
+            if (totalCount > 0) {
+                badge.style.display = "block";
+                badge.innerText = totalCount;
+            } else {
+                badge.style.display = "none";
+            }
+        }
+
+        window.onload = function () {
+            let storedCart = localStorage.getItem('cart');
+            if (storedCart) {
+                cart = JSON.parse(storedCart);
+                updateCartBadge();
+            }
+        };
+    </script>
 </head>
 <body>
     <div class="header">
@@ -93,49 +127,12 @@
                 <img src="login-icon.png" class="icon" onclick="document.getElementById('login-form').style.display='block'">
             </div>
             <div class="icon-container">
-                <img src="cart-icon.png" class="icon" onclick="location.href='cart.html'">
+                <img src="cart-icon.png" class="icon">
                 <span id="cart-badge" class="cart-badge">0</span>
             </div>
         </div>
     </div>
 
-    <div class="image-container">
-        <img src="image1.jpg" alt="Image 1">
-        <div class="button-container">
-            <a href="shop.html" class="pay-button">Shop Now</a>
-        </div>
-    </div>
-    <div class="image-container">
-        <img src="image2.jpg" alt="Image 2">
-        <div class="button-container">
-            <a href="shop.html" class="pay-button">Shop Now</a>
-        </div>
-    </div>
-    <div class="image-container">
-        <img src="image3.jpg" alt="Image 3">
-        <div class="button-container">
-            <a href="shop.html" class="pay-button">Shop Now</a>
-        </div>
-    </div>
-    <div class="image-container">
-        <img src="image4.jpg" alt="Image 4">
-        <div class="button-container">
-            <a href="shop.html" class="pay-button">Shop Now</a>
-        </div>
-    </div>
-    <div class="image-container">
-        <img src="image5.jpg" alt="Image 5">
-        <div class="button-container">
-            <a href="shop.html" class="pay-button">Shop Now</a>
-        </div>
-    </div>
-    <div class="image-container">
-        <img src="image6.jpg" alt="Image 6">
-        <div class="button-container">
-            <a href="shop.html" class="pay-button">Shop Now</a>
-        </div>
-    </div>
-    
     <div class="footer">
         <p>&copy; 2025 Pixel Panda. All rights reserved.</p>
     </div>
