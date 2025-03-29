@@ -8,6 +8,19 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: Arial, sans-serif; text-align: center; }
         .container { width: 100%; position: relative; }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background: #f8f9fa;
+        }
+        .header a {
+            text-decoration: none;
+            color: black;
+            font-size: 24px;
+            margin: 0 15px;
+        }
         .image-container { position: relative; display: inline-block; width: 50%; margin-bottom: 20px; }
         img { width: 100%; height: auto; display: block; }
         .button-container {
@@ -31,8 +44,20 @@
             background-color: #218838;
         }
     </style>
+    <script>
+        function login() {
+            let email = prompt("Enter your email:");
+            if (email) {
+                alert("Logged in as " + email);
+            }
+        }
+    </script>
 </head>
 <body>
+    <div class="header">
+        <a href="#" onclick="login()">📧 Login</a>
+        <a href="cart.html">🛒 Cart</a>
+    </div>
     <div class="container">
         <div class="image-container">
             <img src="image1.jpg" alt="Image 1">
