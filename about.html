@@ -8,6 +8,7 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Archivo Narrow', sans-serif; background-color: #272727; color: #fff; }
+        .container { width: 100%; position: relative; }
         .header {
             display: flex;
             justify-content: space-between;
@@ -18,8 +19,8 @@
             font-size: 22px;
         }
         .logo img {
-            height: 50px;
-            width: 50px;
+            height: 150px;
+            width: 150px;
         }
         .menu { display: flex; align-items: center; gap: 50px; }
         .menu a {
@@ -29,43 +30,68 @@
             transition: color 0.3s;
         }
         .menu a:hover { color: #f39c12; }
-        .container {
-            max-width: 800px;
-            margin: 50px auto;
+        .icon {
+            width: 30px;
+            height: 30px;
+            filter: invert(0);
+            cursor: pointer;
+        }
+        .cart-badge {
+            background: orange;
+            color: white;
+            font-size: 14px;
+            border-radius: 50%;
+            padding: 5px 10px;
+            position: absolute;
+            top: -5px;
+            right: -10px;
+            display: none;
+        }
+        .icon-container {
+            position: relative;
+        }
+        .content {
             text-align: center;
+            padding: 50px 20px;
+            max-width: 800px;
+            margin: 0 auto;
         }
         .footer {
             text-align: center;
             padding: 20px;
             background: #fff;
             color: #272727;
-            margin-top: 20px;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
         }
     </style>
 </head>
 <body>
-
     <div class="header">
         <div class="logo">
-            <img src="LOGO.png" alt="Pixel Panda Logo">
+            <img src="LOGO.png" alt="Logo">
         </div>
         <div class="menu">
             <a href="index.html">Home</a>
             <a href="about.html">About</a>
-            <a href="cart.html">Cart</a>
+            <div class="icon-container">
+                <img src="login-icon.png" class="icon" onclick="document.getElementById('login-form').style.display='block'">
+            </div>
+            <div class="icon-container">
+                <img src="cart-icon.png" class="icon" onclick="location.href='cart.html'">
+                <span id="cart-badge" class="cart-badge">0</span>
+            </div>
         </div>
     </div>
 
-    <div class="container">
+    <div class="content">
         <h1>About Pixel Panda</h1>
-        <p>Pixel Panda is your go-to destination for ready-made digital designs and print-on-demand (POD) products. We take the hassle out of designing by offering high-quality digital artwork and prints that you can use instantly for your creative projects.</p>
-        <p>Our goal is to save you time while providing professionally designed assets that enhance your products. Whether you're looking for unique prints, artistic graphics, or customizable digital downloads, Pixel Panda makes it easy for you to focus on selling while we handle the design process.</p>
-        <p>We believe in creativity without limits, and our digital products help businesses and individuals bring their ideas to life with ease. Explore our collection and get started today!</p>
+        <p>Pixel Panda is dedicated to making print-on-demand (POD) easier by offering high-quality, ready-made digital designs. Our mission is to save time spent on designing while providing a diverse range of creative assets for businesses and individuals looking to launch their own products effortlessly.</p>
     </div>
 
     <div class="footer">
         <p>&copy; 2025 Pixel Panda. All rights reserved.</p>
     </div>
-
 </body>
 </html>
