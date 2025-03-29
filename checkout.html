@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout - Pixel Panda Store</title>
     <link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow&display=swap" rel="stylesheet">
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Archivo Narrow', sans-serif; background-color: #272727; color: #fff; }
@@ -56,19 +57,12 @@
             text-decoration: none;
             margin-top: 20px;
             transition: background-color 0.3s ease;
+            cursor: pointer;
         }
         .pay-button:hover {
             background-color: #218838;
         }
     </style>
-    <script>
-        let cart = JSON.parse(localStorage.getItem('cart')) || [];
-        function renderCheckout() {
-            let total = cart.reduce((sum, item) => sum + (item.quantity * 1300), 0);
-            document.getElementById("checkout-total").innerText = `Total: ₹${total}`;
-        }
-        window.onload = renderCheckout;
-    </script>
 </head>
 <body>
     <div class="header">
@@ -86,8 +80,44 @@
             <label for="phone">Phone Number (Optional)</label>
             <input type="tel" id="phone" class="input-field" placeholder="Enter your phone number">
             <div class="checkout-total" id="checkout-total">Total: ₹0</div>
-            <a href="https://razorpay.me/@pixelpanda6460" class="pay-button">Pay Now</a>
+            <button class="pay-button" onclick="startPayment()">Pay Now</button>
         </div>
     </div>
+    <script>
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let totalAmount = cart.reduce((sum, item) => sum + (item.quantity * 1300), 0);
+        document.getElementById("checkout-total").innerText = `Total: ₹${totalAmount}`;
+
+        function startPayment() {
+            let name = document.getElementById('name').value;
+            let email = document.getElementById('email').value;
+            let phone = document.getElementById('phone').value;
+            if (!name || !email) {
+                alert("Name and Email are required!");
+                return;
+            }
+            
+            let options = {
+                "key": "YOUR_RAZORPAY_KEY", // Replace with your Razorpay key
+                "amount": totalAmount * 100, 
+                "currency": "INR",
+                "name": "Pixel Panda Store",
+                "description": "Order Payment",
+                "handler": function (response) {
+                    alert("Payment Successful! Payment ID: " + response.razorpay_payment_id);
+                },
+                "prefill": {
+                    "name": name,
+                    "email": email,
+                    "contact": phone
+                },
+                "theme": {
+                    "color": "#28a745"
+                }
+            };
+            let rzp1 = new Razorpay(options);
+            rzp1.open();
+        }
+    </script>
 </body>
 </html>
