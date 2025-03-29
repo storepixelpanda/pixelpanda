@@ -8,32 +8,29 @@
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Archivo Narrow', sans-serif; background-color: #272727; color: #fff; }
-        .container { width: 100%; max-width: 800px; margin: auto; padding: 20px; }
+        body { font-family: 'Archivo Narrow', sans-serif; background-color: #f8f8f8; color: #333; }
+        .container { width: 100%; max-width: 600px; margin: auto; padding: 20px; }
         .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 40px;
+            text-align: center;
+            padding: 20px 0;
             background: #fff;
             box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
             font-size: 22px;
         }
         .logo img {
-            height: 150px;
-            width: 150px;
+            height: 120px;
             cursor: pointer;
         }
         .checkout-container {
             background: #fff;
             padding: 20px;
             border-radius: 10px;
-            color: #272727;
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
             margin-top: 20px;
         }
         .input-field {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             margin-top: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
@@ -41,34 +38,34 @@
         }
         .checkout-total {
             text-align: right;
-            font-size: 22px;
+            font-size: 20px;
             font-weight: bold;
             margin-top: 15px;
+            color: #333;
         }
         .pay-button {
             display: block;
             width: 100%;
             text-align: center;
-            background-color: #28a745;
+            background-color: #ff6600;
             color: white;
             padding: 15px;
-            font-size: 20px;
+            font-size: 18px;
             border-radius: 5px;
             text-decoration: none;
             margin-top: 20px;
+            border: none;
             transition: background-color 0.3s ease;
             cursor: pointer;
         }
         .pay-button:hover {
-            background-color: #218838;
+            background-color: #e55a00;
         }
     </style>
 </head>
 <body>
     <div class="header">
-        <div class="logo">
-            <a href="index.html"><img src="LOGO.png" alt="Logo"></a>
-        </div>
+        <a href="index.html"><img src="LOGO.png" alt="Logo"></a>
     </div>
     <div class="container">
         <h2>Checkout</h2>
@@ -86,25 +83,30 @@
     <script>
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
         let totalAmount = cart.reduce((sum, item) => sum + (item.quantity * 1300), 0);
-        document.getElementById("checkout-total").innerText = `Total: ₹${totalAmount}`;
 
+        // Ensure the totalAmount is locked and can't be modified by user
+        document.getElementById("checkout-total").innerText = `Total: ₹${totalAmount}`;
+        
         function startPayment() {
             let name = document.getElementById('name').value;
             let email = document.getElementById('email').value;
             let phone = document.getElementById('phone').value;
+
             if (!name || !email) {
                 alert("Name and Email are required!");
                 return;
             }
-            
+
             let options = {
-                "key": "YOUR_RAZORPAY_KEY", // Replace with your Razorpay key
+                "key": "YOUR_RAZORPAY_KEY", // Replace with your actual Razorpay key
                 "amount": totalAmount * 100, 
                 "currency": "INR",
                 "name": "Pixel Panda Store",
                 "description": "Order Payment",
+                "image": "LOGO.png",
                 "handler": function (response) {
                     alert("Payment Successful! Payment ID: " + response.razorpay_payment_id);
+                    sendEmail(name, email);
                 },
                 "prefill": {
                     "name": name,
@@ -112,11 +114,19 @@
                     "contact": phone
                 },
                 "theme": {
-                    "color": "#28a745"
+                    "color": "#ff6600"
                 }
             };
+
             let rzp1 = new Razorpay(options);
             rzp1.open();
+        }
+
+        function sendEmail(name, email) {
+            let subject = "Your Order Confirmation - Pixel Panda Store";
+            let body = `Hi ${name},%0A%0AThank you for your purchase! Your order has been confirmed.%0A%0AProduct Link: [Insert Download Link]%0A%0AIf you have any questions, feel free to contact us.%0A%0ARegards,%0APixel Panda Team`;
+
+            window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
         }
     </script>
 </body>
