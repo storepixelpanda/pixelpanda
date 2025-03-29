@@ -7,54 +7,64 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: Arial, sans-serif; text-align: center; }
-        .container { width: 100%; }
-        img { width: 50%; height: auto; display: block; margin: 0 auto; }
-        .button-container { margin: 10px 0; }
+        .container { width: 100%; position: relative; }
+        .image-container { position: relative; display: inline-block; width: 50%; margin-bottom: 20px; }
+        img { width: 100%; height: auto; display: block; }
+        .button-container {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+        }
         .pay-button {
-            background-color: #008CBA;
+            background-color: #28a745;
             color: white;
-            padding: 10px 20px;
+            padding: 20px 40px;
             text-decoration: none;
-            font-size: 16px;
+            font-size: 32px;
             border-radius: 5px;
             display: inline-block;
-            margin-top: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .pay-button:hover {
+            background-color: #218838;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div>
+        <div class="image-container">
             <img src="image1.jpg" alt="Image 1">
             <div class="button-container">
                 <a href="https://razorpay.me/@pixelpanda6460" class="pay-button" target="_blank">Buy Now</a>
             </div>
         </div>
-        <div>
+        <div class="image-container">
             <img src="image2.jpg" alt="Image 2">
             <div class="button-container">
                 <a href="https://razorpay.me/@pixelpanda6460" class="pay-button" target="_blank">Buy Now</a>
             </div>
         </div>
-        <div>
+        <div class="image-container">
             <img src="image3.jpg" alt="Image 3">
             <div class="button-container">
                 <a href="https://razorpay.me/@pixelpanda6460" class="pay-button" target="_blank">Buy Now</a>
             </div>
         </div>
-        <div>
+        <div class="image-container">
             <img src="image4.jpg" alt="Image 4">
             <div class="button-container">
                 <a href="https://razorpay.me/@pixelpanda6460" class="pay-button" target="_blank">Buy Now</a>
             </div>
         </div>
-        <div>
+        <div class="image-container">
             <img src="image5.jpg" alt="Image 5">
             <div class="button-container">
                 <a href="https://razorpay.me/@pixelpanda6460" class="pay-button" target="_blank">Buy Now</a>
             </div>
         </div>
-        <div>
+        <div class="image-container">
             <img src="image6.jpg" alt="Image 6">
             <div class="button-container">
                 <a href="https://razorpay.me/@pixelpanda6460" class="pay-button" target="_blank">Buy Now</a>
